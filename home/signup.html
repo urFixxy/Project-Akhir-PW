@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/Logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6dc1ec",
+              "primary-hover": "#4aaedb",
+              secondary: "#ffffff",
+              third: "#000000",
+              priback: "#C6E9FC",
+              stroke: "#6dc1ec",
+            },
+            fontFamily: {
+              jakarta: ["Plus Jakarta Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <title>Sign In | Obatln</title>
+  </head>
+  <body class="font-jakarta">
+    <!-- LOGIN PAGE -->
+    <div class="flex justify-between h-screen w-screen">
+      <div class="image flex-1 hidden md:block">
+        <img
+          src="../assets/medicine.jpg"
+          class="h-full w-full object-cover"
+          alt="Medicine Image"
+        />
+      </div>
+      <div class="flex flex-1 items-center justify-center px-10 sm:px-20">
+        <div class="w-full max-w-md">
+          <div class="flex items-center text-xl">
+            <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign Up</h1>
+            <span class="text-3xl text-primary">Obatln</span>
+          </div>
+          <p class="mb-5 text-sm text-gray-600">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+            voluptates cumque ullam.
+          </p>
+          <form
+            action=""
+            method="post"
+            class="flex gap-3 flex-col justify-center"
+          >
+            <label>
+              <p>Username</p>
+              <input
+                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
+                type="text"
+                placeholder="Masukkan Username"
+              />
+            </label>
+            <label>
+              <p>Email</p>
+              <input
+                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
+                type="email"
+                placeholder="Masukkan email"
+              />
+            </label>
+            <div class="relative w-full">
+              <p>Password</p>
+              <input
+                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
+                type="password"
+                placeholder="Masukkan password"
+                id="password"
+              />
+              <button
+                type="button"
+                class="absolute top-1/2 right-6 transform text-gray-500 togglePassword"
+                data-target="password"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+            </div>
+
+            <div class="relative w-full">
+              <p>Confirm Password</p>
+              <input
+                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white "
+                type="password"
+                placeholder="Konfirmasi password"
+                id="confirmPassword"
+              />
+              <button
+                type="button"
+                class="absolute top-1/2 right-6 transform text-gray-500 togglePassword"
+                data-target="confirmPassword"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+            </div>
+
+            <div class="checkbox flex gap-3 items-start text-sm">
+              <input type="checkbox" class="w-4 mt-1" />
+              <p>
+                I agree to the
+                <a
+                  href="#"
+                  class="underline decoration-sky-500/30 text-sky-500"
+                  >Privacy Policy</a
+                  > dan
+                  <a
+                    href="#"
+                    class="underline decoration-sky-500/30 text-sky-500"
+                    >Terms and Conditions</a
+                  >
+              </p>
+            </div>
+            <a
+              class="my-5 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
+              href="login.html"
+              >Sign Up</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".togglePassword").forEach((button) => {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const passwordInput = document.getElementById(targetId);
+
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            this.innerHTML = '<i class="fa fa-eye-slash"></i>';
+          } else {
+            passwordInput.type = "password";
+            this.innerHTML = '<i class="fa fa-eye"></i>';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
