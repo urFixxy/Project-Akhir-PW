@@ -78,7 +78,7 @@
               >User</a
             >
             <a
-              href="signin.html"
+              href="signinkar.html"
               class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition"
               >Karyawan</a
             >
@@ -166,13 +166,11 @@
       const loginModal = document.getElementById("loginModal");
       const closeModalBtn = document.getElementById("closeLoginModal");
 
-      // Ambil semua tombol Sign In
       const openModalBtns = document.querySelectorAll("#openLoginModal");
 
-      // Tambahkan event listener ke semua tombol
       openModalBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
-          e.preventDefault(); // Hindari langsung redirect jika <a>
+          e.preventDefault();
           loginModal.classList.remove("hidden");
         });
       });
@@ -181,7 +179,6 @@
         loginModal.classList.add("hidden");
       });
 
-      // Tutup modal jika klik di luar
       window.addEventListener("click", (e) => {
         if (e.target === loginModal) {
           loginModal.classList.add("hidden");

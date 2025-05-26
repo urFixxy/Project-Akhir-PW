@@ -34,9 +34,17 @@
         },
       };
     </script>
-
+    <style>
+      input::-ms-reveal,
+      input::-ms-clear,
+      input::-webkit-credentials-auto-fill-button,
+      input::-webkit-password-reveal-button {
+        display: none;
+      }
+    </style>
     <title>Sign In | Obatln</title>
   </head>
+
   <body class="font-jakarta">
     <!-- LOGIN PAGE -->
     <div class="flex justify-between h-screen w-screen">
@@ -44,7 +52,10 @@
         <div class="w-full max-w-md">
           <div class="flex items-center text-xl">
             <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign In</h1>
-            <span class="text-3xl text-primary cursor-pointer hover:text-primary-hover"><a href="index.html">Obatln</a></span>
+            <span
+              class="text-3xl text-primary cursor-pointer hover:text-primary-hover"
+              ><a href="index.html">Obatln</a></span
+            >
           </div>
           <p class="mb-5 text-sm text-gray-600">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
@@ -55,14 +66,6 @@
             method="post"
             class="flex gap-3 flex-col justify-center"
           >
-            <label>
-              <p>Username</p>
-              <input
-                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
-                type="text"
-                placeholder="Masukkan Username"
-              />
-            </label>
             <label>
               <p>Email</p>
               <input
@@ -91,7 +94,8 @@
             <a
               class="my-5 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
               href="login.html"
-              >Sign In</a>
+              >Sign In</a
+            >
           </form>
         </div>
       </div>
