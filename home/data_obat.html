@@ -56,7 +56,7 @@
       class="fixed hidden md:flex top-0 left-0 w-full z-1 flex items-center justify-end px-4 py-4 bg-white shadow-md"
     >
       <div class="flex items center justify-center mr-3">
-        <button class="text-third hover:text-primary-hover transition">
+        <button class="text-primary hover:text-primary-hover transition">
           <i class="fas fa-user text-lg md:text-xl"></i>
           <span class="hidden md:inline-block ml-1 font-semibold">Profile</span>
         </button>
@@ -82,6 +82,7 @@
           <span class="font-jakarta text-secondary">Dashboard</span>
         </a>
       </nav>
+
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Data</div>
         <nav class="w-full">
@@ -95,10 +96,10 @@
             </a>
             <a
               href="data_obat.html"
-              class="flex items-center space-x-2 p-2 bg-secondary transition rounded-md w-full"
+              class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
             >
-              <i class="fas fa-pills text-primary"></i>
-              <span class="font-jakarta text-primary">Data Obat</span>
+              <i class="fas fa-pills"></i>
+              <span class="font-jakarta">Data Obat</span>
             </a>
             <a
               href="data_supplier.html"
@@ -110,12 +111,13 @@
           </div>
         </nav>
       </div>
+
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Transaksi</div>
         <nav class="w-full">
           <div class="space-y-2 w-full">
             <a
-              href="data_kategori.html"
+              href="data_pembelian.html"
               class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
               <i class="fas fa-receipt"></i>
@@ -124,6 +126,22 @@
           </div>
         </nav>
       </div>
+
+      <div class="w-full border-t-2 border-secondary pt-4">
+        <div class="mb-2">Master Laporan</div>
+        <nav class="w-full">
+          <div class="space-y-2 w-full">
+            <a
+              href="data_laporan.html"
+              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+            >
+              <i class="fas fa-receipt"></i>
+              <span class="font-jakarta">Data Laporan</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+
       <nav class="w-full">
         <a
           href="dashboard.html"
@@ -137,148 +155,130 @@
 
     <!-- Dasboard mobile-->
     <div
-      class="hidden md:hidden fixed right-0 top-[60px] h-screen w-2/5 bg-primary text-white flex flex-col px-2 py-4 space-y-6 overflow-y-auto"
+      class="fixed right-0 top-[60px] h-screen w-2/5 bg-primary text-white flex flex-col px-2 py-4 space-y-0 overflow-y-auto translate-x-full transition-transform duration-300 ease-in-out"
       id="mobileDashboard"
     >
+      <main class="overflow-y-auto min-h-calc(100vh - 60px)">
+        <div class="flex items-center justify-center space-x-2 px-2">
+          <button
+            class="flex items-center space-x-2 text-secondary hover:text-primary-hover transition p-2 rounded-md"
+          >
+            <i class="fas fa-user text-lg"></i>
+            <span class="font-jakarta font-semibold">Profile</span>
+          </button>
+        </div>
 
-      <div class="flex items-center justify-center space-x-2 px-2">
-        <button
-          class="flex items-center space-x-2 text-secondary hover:text-primary-hover transition p-2 rounded-md"
-        >
-          <i class="fas fa-user text-lg"></i>
-          <span class="font-jakarta font-semibold">Profile</span>
-        </button>
-      </div>
-
-      <nav class="w-full">
-        <a
-          href="dashboard.html"
-          class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
-        >
-          <i class="fas fa-home text-secondary"></i>
-          <span class="font-jakarta text-secondary">Dashboard</span>
-        </a>
-      </nav>
-
-      <div class="w-full border-t-2 border-secondary pt-4">
-        <div class="mb-2 text-center font-semibold">Master Data</div>
-        <nav class="w-full">
-          <div class="space-y-2 w-full">
-            <a
-              href="data_kategori.html"
-              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
-            >
-              <i class="fas fa-tags"></i>
-              <span class="font-jakarta">Data Kategori</span>
-            </a>
-            <a
-              href="data_obat.html"
-              class="flex items-center space-x-2 p-2 bg-secondary transition rounded-md w-full"
-            >
-              <i class="fas fa-pills text-primary"></i>
-              <span class="font-jakarta text-primary">Data Obat</span>
-            </a>
-            <a
-              href="data_supplier.html"
-              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
-            >
-              <i class="fas fa-user-tie"></i>
-              <span class="font-jakarta">Data Supplier</span>
-            </a>
-          </div>
+        <nav class="w-full mt-4">
+          <a
+            href="dashboard.html"
+            class="flex items-center space-x-2 p-2 hover:bg-primary-hover text-secondary transition rounded-md w-full"
+          >
+            <i class="fas fa-home"></i>
+            <span class="font-jakarta">Dashboard</span>
+          </a>
         </nav>
-      </div>
 
-      <div class="w-full border-t-2 border-secondary pt-4">
-        <div class="mb-2 text-center font-semibold">Master Transaksi</div>
-        <nav class="w-full">
-          <div class="space-y-2 w-full">
-            <a
-              href="data_kategori.html"
-              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
-            >
-              <i class="fas fa-receipt"></i>
-              <span class="font-jakarta">Data Pembelian</span>
-            </a>
-          </div>
+        <div class="w-full border-t-2 border-secondary pt-4 mt-4">
+          <div class="mb-2">Master Data</div>
+          <nav class="w-full">
+            <div class="w-full">
+              <a
+                href="data_kategori.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-tags"></i>
+                <span class="font-jakarta">Data Kategori</span>
+              </a>
+              <a
+                href="data_obat.html"
+                class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
+              >
+                <i class="fas fa-pills"></i>
+                <span class="font-jakarta">Data Obat</span>
+              </a>
+              <a
+                href="data_supplier.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-user-tie"></i>
+                <span class="font-jakarta">Data Supplier</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <div class="w-full border-t-2 border-secondary pt-4 mt-4">
+          <div class="mb-2">Master Transaksi</div>
+          <nav class="w-full">
+            <div class="w-full">
+              <a
+                href="data_pembelian.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-receipt"></i>
+                <span class="font-jakarta">Data Pembelian</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <div class="w-full border-t-2 border-secondary pt-4 mt-4">
+          <div class="mb-2">Master Laporan</div>
+          <nav class="w-full">
+            <div class="w-full">
+              <a
+                href="data_laporan.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-receipt"></i>
+                <span class="font-jakarta">Data Laporan</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <nav class="w-full pt-4">
+          <a
+            href="dashboard.html"
+            class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
+          >
+            <i class="fas fa-sign-out-alt text-secondary"></i>
+            <span class="font-jakarta text-secondary">Sign Out</span>
+          </a>
         </nav>
-      </div>
-
-      <nav class="w-full border-t-2 border-secondary pt-4">
-        <a
-          href="signin.html"
-          class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
-        >
-          <i class="fas fa-sign-out-alt text-secondary"></i>
-          <span class="font-jakarta text-secondary">Sign Out</span>
-        </a>
-      </nav>
+      </main>
     </div>
 
     <!-- Main content -->
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener("click", function (event) {
-            event.stopPropagation(); // Mencegah klik menutup menu langsung
-            mobileMenu.classList.toggle("hidden");
-          });
-
-          document.addEventListener("click", function (event) {
-            if (
-              !menuToggle.contains(event.target) &&
-              !mobileMenu.contains(event.target)
-            ) {
-              mobileMenu.classList.add("hidden");
-            }
-          });
-        }
-
         const menuDashboard = document.getElementById("menuDashboard");
         const mobileDashboard = document.getElementById("mobileDashboard");
 
         if (menuDashboard && mobileDashboard) {
           menuDashboard.addEventListener("click", function (event) {
-            event.stopPropagation(); // Mencegah klik menutup menu langsung
-            mobileDashboard.classList.toggle("hidden");
+            event.stopPropagation();
+            mobileDashboard.classList.toggle("translate-x-full");
           });
 
+          // Klik di luar menu nutup menu
           document.addEventListener("click", function (event) {
             if (
               !menuDashboard.contains(event.target) &&
               !mobileDashboard.contains(event.target)
             ) {
-              mobileDashboard.classList.add("hidden");
+              if (!mobileDashboard.classList.contains("translate-x-full")) {
+                mobileDashboard.classList.add("translate-x-full");
+              }
             }
+          });
+
+          // Biar klik di dalam menu nggak nutup
+          mobileDashboard.addEventListener("click", function (event) {
+            event.stopPropagation();
           });
         }
-
-        // Accordion logic
-        document.querySelectorAll(".accordion-header").forEach((button) => {
-          button.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector(".accordion-icon");
-
-            if (content.classList.contains("hidden")) {
-              document
-                .querySelectorAll(".accordion-content")
-                .forEach((item) => item.classList.add("hidden"));
-              document
-                .querySelectorAll(".accordion-icon")
-                .forEach((icon) => (icon.textContent = "+"));
-
-              content.classList.remove("hidden");
-              icon.textContent = "-";
-            } else {
-              content.classList.add("hidden");
-              icon.textContent = "+";
-            }
-          });
-        });
       });
     </script>
   </body>
