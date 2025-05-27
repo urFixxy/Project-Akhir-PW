@@ -24,8 +24,6 @@
               "primary-hover": "#4aaedb",
               secondary: "#ffffff",
               third: "#000000",
-              fourth: "#9966FF",
-              "fourth-hover": "#804DCC",
               priback: "#C6E9FC",
               stroke: "#6dc1ec",
             },
@@ -46,26 +44,19 @@
     </style>
     <title>Sign In | Obatln</title>
   </head>
+
   <body class="font-jakarta">
     <!-- LOGIN PAGE -->
     <div class="flex justify-between h-screen w-screen">
-      <div class="image flex-1 hidden md:block">
-        <img
-          src="../assets/medicine.jpg"
-          class="h-full w-full object-cover"
-          alt="Medicine Image"
-        />
-      </div>
       <div class="flex flex-1 items-center justify-center px-10 sm:px-20">
         <div class="w-full max-w-md">
-          <div class="flex items-center text-xl">
-            <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign Up</h1>
-            <span class="text-3xl text-primary">Obatln</span>
+          <div class="flex items-center text-xl mb-5">
+            <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign In</h1>
+            <span
+              class="text-3xl text-primary cursor-pointer hover:text-primary-hover"
+              ><a href="index.html">Obatln</a></span
+            >
           </div>
-          <p class="mb-5 text-sm text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-            voluptates cumque ullam.
-          </p>
           <form
             action=""
             method="post"
@@ -96,46 +87,20 @@
               </button>
             </div>
 
-            <div class="relative w-full">
-              <p>Confirm Password</p>
-              <input
-                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
-                type="password"
-                placeholder="Konfirmasi password"
-                id="confirmPassword"
-              />
-              <button
-                type="button"
-                class="absolute top-1/2 right-6 transform text-gray-500 togglePassword"
-                data-target="confirmPassword"
-              >
-                <i class="fa fa-eye"></i>
-              </button>
-            </div>
-
-            <div class="checkbox flex gap-3 items-start text-sm">
-              <input type="checkbox" class="w-4 mt-1" />
-              <p>
-                I agree to the
-                <a href="#" class="text-primary underline">Privacy Policy</a>
-                dan
-                <a href="#" class="underline text-primary"
-                  >Terms and Conditions</a
-                >
-              </p>
-            </div>
             <a
-              class="my-2 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
-              href="login.html"
-              >Sign Up</a
+              class="my-5 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
+              href="dashboard.html"
+              >Sign In</a
             >
-
-            <p class="text-sm text-center">
-              Already have an account?
-              <a href="signinuse.html" class="text-primary">Sign In</a>
-            </p>
           </form>
         </div>
+      </div>
+      <div class="image flex-1 hidden md:block z-10">
+        <img
+          src="../assets/medicine.jpg"
+          class="h-full w-full object-cover"
+          alt="Medicine Image"
+        />
       </div>
     </div>
 
@@ -144,14 +109,13 @@
         button.addEventListener("click", function () {
           const targetId = this.getAttribute("data-target");
           const passwordInput = document.getElementById(targetId);
-          const buttonIcon = this.querySelector("i");
 
           if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            buttonIcon.classList.replace("fa-eye", "fa-eye-slash");
+            this.innerHTML = '<i class="fa fa-eye-slash"></i>';
           } else {
             passwordInput.type = "password";
-            buttonIcon.classList.replace("fa-eye-slash", "fa-eye");
+            this.innerHTML = '<i class="fa fa-eye"></i>';
           }
         });
       });
