@@ -250,8 +250,73 @@
     </div>
 
     <!-- Main content -->
+    <div class="ml-0 md:ml-60 mt-[60px] p-5">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-row space-x-2 items-center">
+          <i class="fas fa-tags text-2xl"></i>
+          <p class="text-xl font-bold">Data Kategori</p>
+        </div>
+        <div
+          class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
+        >
+          <p class="font-semibold">Add</p>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-lg mt-5 shadow-lg">
+        <div class="flex items-center justify-center mb-4">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari Kategori..."
+            class="w-full md:w-1/3 p-2 border border-gray-300 rounded-lg focus:outline-none"
+          />
+        </div>
+        <table
+          class="min-w-full text-sm border-0 border-gray-300 bg-white"
+          id="kategoriTable"
+        >
+          <thead class="bg-primary text-white">
+            <tr>
+              <th class="px-4 py-2 text-center">No</th>
+              <th class="px-4 py-2 text-center">Kode Kategori</th>
+              <th class="px-4 py-2 text-center">Nama Kategori</th>
+              <th class="px-4 py-2 text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody
+            id="tableBody"
+            class="text-gray-800 text-center divide-y divide-gray"
+          ></tbody>
+        </table>
+      </div>
+    </div>
 
     <script>
+      // Script untuk fake data
+      const dataKategori = [
+        { kode: "K001", nama: "Obat Umum" },
+        { kode: "K002", nama: "Vitamin" },
+        { kode: "K003", nama: "Antibiotik" },
+      ];
+
+      const tbody = document.getElementById("tableBody");
+
+      dataKategori.forEach((item, index) => {
+        tbody.innerHTML += `
+        <tr>
+          <td class="px-4 py-2">${index + 1}</td>
+          <td class="px-4 py-2">${item.kode}</td>
+          <td class="px-4 py-2">${item.nama}</td>
+          <td class="flex items-center justify-center px-4 py-2 space-x-2">
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"><i class="fas fa-edit"></i></button>
+            <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>`;
+      });
+
+      // Script untuk toggle menu dashboard mobile
       document.addEventListener("DOMContentLoaded", function () {
         const menuDashboard = document.getElementById("menuDashboard");
         const mobileDashboard = document.getElementById("mobileDashboard");

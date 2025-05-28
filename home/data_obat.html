@@ -250,8 +250,72 @@
     </div>
 
     <!-- Main content -->
+     <div class="ml-0 md:ml-60 mt-[60px] p-5">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-row space-x-2 items-center">
+          <i class="fas fa-pills text-2xl"></i>
+          <p class="text-xl font-bold">Data Obat</p>
+        </div>
+        <div
+          class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
+        >
+          <p class="font-semibold">Add</p>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-lg mt-5 shadow-lg">
+        <table
+          class="min-w-full text-sm border-0 border-gray-300 bg-white"
+          id="kategoriTable"
+        >
+          <thead class="bg-primary text-white">
+            <tr>
+              <th class="px-4 py-2 text-center">No</th>
+              <th class="px-4 py-2 text-center">Nama Obat</th>
+              <th class="px-4 py-2 text-center">Tipe</th>
+              <th class="px-4 py-2 text-center">Kode Kategori</th>
+              <th class="px-4 py-2 text-center">Stok</th>
+              <th class="px-4 py-2 text-center">Harga</th>
+              <th class="px-4 py-2 text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody
+            id="tableBody"
+            class="text-gray-800 text-center divide-y divide-gray"
+          ></tbody>
+        </table>
+      </div>
+    </div>
 
     <script>
+      const dataObat = [
+        { nama: "Paracetamol", tipe: "Merah" ,kategori: "K001", stok: 100, harga: 5000 },
+        { nama: "Amoxicilin", tipe: "Hijau" ,kategori: "K002", stok: 200, harga: 15000 },
+        { nama: "Cefixime", tipe: "Merah" ,kategori: "K003", stok: 50, harga: 25000 },
+        { nama: "Obat Batuk", tipe: "Biru" ,kategori: "K004", stok: 75, harga: 10000 },
+        { nama: "Obat Luka", tipe: "Biru" ,kategori: "K005", stok: 30, harga: 20000 },
+      ];
+
+      const tbody = document.getElementById("tableBody");
+
+      dataObat.forEach((item, index) => {
+        tbody.innerHTML += `
+        <tr>
+          <td class="px-4 py-2">${index + 1}</td>
+          <td class="px-4 py-2">${item.nama}</td>
+          <td class="px-4 py-2">${item.tipe}</td>
+          <td class="px-4 py-2">${item.kategori}</td>
+          <td class="px-4 py-2">${item.stok}</td>
+          <td class="px-4 py-2">${item.harga}</td>
+          <td class="flex justify-center px-4 py-2 space-x-2">
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"><i class="fas fa-edit"></i></button>
+            <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>`;
+      });
+
+      // Script untuk toggle menu dashboard mobile
       document.addEventListener("DOMContentLoaded", function () {
         const menuDashboard = document.getElementById("menuDashboard");
         const mobileDashboard = document.getElementById("mobileDashboard");
