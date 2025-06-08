@@ -55,11 +55,13 @@
   <header
    class="fixed hidden md:flex top-0 left-0 w-full z-1 flex items-center justify-end px-4 py-4 bg-white shadow-md"
   >
-   <div class="flex items center justify-center mr-3">
-    <button class="text-primary hover:text-primary-hover transition">
-     <i class="fas fa-user text-lg md:text-xl"></i>
-     <span class="hidden md:inline-block ml-1 font-semibold">Profile</span>
-    </button>
+   <div class="flex items-center justify-center mr-3">
+    <a href="profile.html"
+     ><button class="text-primary hover:text-primary-hover transition">
+      <i class="fas fa-user text-lg md:text-xl"></i>
+      <span class="hidden md:inline-block ml-1 font-semibold">Profile</span>
+     </button></a
+    >
    </div>
   </header>
 
@@ -151,7 +153,7 @@
 
    <nav class="w-full">
     <a
-     href="dashboard.html"
+     href="signin.html"
      class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
     >
      <i class="fas fa-sign-out-alt text-secondary"></i>
@@ -167,12 +169,14 @@
   >
    <main class="overflow-y-auto min-h-calc(100vh - 60px)">
     <div class="flex items-center justify-center space-x-2 px-2">
-     <button
-      class="flex items-center space-x-2 text-secondary hover:text-primary-hover transition p-2 rounded-md"
+     <a href="profile.html"
+      ><button
+       class="flex items-center space-x-2 text-secondary hover:text-primary-hover transition p-2 rounded-md"
+      >
+       <i class="fas fa-user text-lg"></i>
+       <span class="font-jakarta font-semibold">Profile</span>
+      </button></a
      >
-      <i class="fas fa-user text-lg"></i>
-      <span class="font-jakarta font-semibold">Profile</span>
-     </button>
     </div>
 
     <nav class="w-full mt-4">
@@ -256,7 +260,7 @@
 
     <nav class="w-full pt-4">
      <a
-      href="dashboard.html"
+      href="signin.html"
       class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
      >
       <i class="fas fa-sign-out-alt text-secondary"></i>
