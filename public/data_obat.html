@@ -78,25 +78,25 @@
           href="dashboard.html"
           class="flex items-center mt-4 space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
         >
-          <i class="fas fa-home text-secondary"></i>
-          <span class="font-jakarta text-secondary">Dashboard</span>
+          <i class="fas fa-home"></i>
+          <span class="font-jakarta">Dashboard</span>
         </a>
       </nav>
 
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Data</div>
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
               href="data_kategori.html"
-              class="flex items-center space-x-2 p-2 bg-secondary transition rounded-md w-full"
+              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
-              <i class="fas fa-tags text-primary"></i>
-              <span class="font-jakarta text-primary">Data Kategori</span>
+              <i class="fas fa-tags"></i>
+              <span class="font-jakarta">Data Kategori</span>
             </a>
             <a
               href="data_obat.html"
-              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
             >
               <i class="fas fa-pills"></i>
               <span class="font-jakarta">Data Obat</span>
@@ -115,28 +115,35 @@
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Transaksi</div>
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
               href="data_pembelian.html"
               class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
-              <i class="fas fa-receipt"></i>
+              <i class="fas fa-arrow-circle-up"></i>
               <span class="font-jakarta">Data Pembelian</span>
+            </a>
+            <a
+              href="data_pengeluaran.html"
+              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+            >
+              <i class="fas fa-arrow-circle-down"></i>
+              <span class="font-jakarta">Data Pengeluaran</span>
             </a>
           </div>
         </nav>
       </div>
 
       <div class="w-full border-t-2 border-secondary pt-4">
-        <div class="mb-2">Master Laporan</div>
+        <div class="mb-2">Master Pegawai</div>
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
-              href="data_laporan.html"
+              href="data_pegawai.html"
               class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
               <i class="fas fa-receipt"></i>
-              <span class="font-jakarta">Data Laporan</span>
+              <span class="font-jakarta">Data Pegawai</span>
             </a>
           </div>
         </nav>
@@ -184,14 +191,14 @@
             <div class="w-full">
               <a
                 href="data_kategori.html"
-                class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
               >
                 <i class="fas fa-tags"></i>
                 <span class="font-jakarta">Data Kategori</span>
               </a>
               <a
                 href="data_obat.html"
-                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+                class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
               >
                 <i class="fas fa-pills"></i>
                 <span class="font-jakarta">Data Obat</span>
@@ -215,23 +222,30 @@
                 href="data_pembelian.html"
                 class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
               >
-                <i class="fas fa-receipt"></i>
+                <i class="fas fa-arrow-circle-up"></i>
                 <span class="font-jakarta">Data Pembelian</span>
+              </a>
+              <a
+                href="data_pengeluaran.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-arrow-circle-down"></i>
+                <span class="font-jakarta">Data Pengeluaran</span>
               </a>
             </div>
           </nav>
         </div>
 
         <div class="w-full border-t-2 border-secondary pt-4 mt-4">
-          <div class="mb-2">Master Laporan</div>
+          <div class="mb-2">Master Pegawai</div>
           <nav class="w-full">
             <div class="w-full">
               <a
-                href="data_laporan.html"
+                href="data_pegawai.html"
                 class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
               >
                 <i class="fas fa-receipt"></i>
-                <span class="font-jakarta">Data Laporan</span>
+                <span class="font-jakarta">Data Pegawai</span>
               </a>
             </div>
           </nav>
@@ -253,8 +267,8 @@
     <div class="ml-0 md:ml-60 mt-[60px] p-5">
       <div class="flex items-center justify-between">
         <div class="flex flex-row space-x-2 items-center">
-          <i class="fas fa-tags text-2xl"></i>
-          <p class="text-xl font-bold">Data Kategori</p>
+          <i class="fas fa-pills text-2xl"></i>
+          <p class="text-xl font-bold">Data Obat</p>
         </div>
         <div
           class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
@@ -264,15 +278,16 @@
         </div>
       </div>
 
+      <div class="flex items-center justify-center mb-4">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari..."
+          class="w-full md:w-1/3 p-2 border border-gray-300 rounded-full focus:outline-none"
+        />
+      </div>
+
       <div class="overflow-x-auto rounded-lg mt-5 shadow-lg">
-        <div class="flex items-center justify-center mb-4">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Cari Kategori..."
-            class="w-full md:w-1/3 p-2 border border-gray-300 rounded-lg focus:outline-none"
-          />
-        </div>
         <table
           class="min-w-full text-sm border-0 border-gray-300 bg-white"
           id="kategoriTable"
@@ -280,8 +295,12 @@
           <thead class="bg-primary text-white">
             <tr>
               <th class="px-4 py-2 text-center">No</th>
+              <th class="px-4 py-2 text-center">Nama Obat</th>
+              <th class="px-4 py-2 text-center">Jenis</th>
+              <th class="px-4 py-2 text-center">Stok</th>
+              <th class="px-4 py-2 text-center">Harga</th>
               <th class="px-4 py-2 text-center">Kode Kategori</th>
-              <th class="px-4 py-2 text-center">Nama Kategori</th>
+              <th class="px-4 py-2 text-center">Kode Supplier</th>
               <th class="px-4 py-2 text-center">Aksi</th>
             </tr>
           </thead>
@@ -293,27 +312,156 @@
       </div>
     </div>
 
+    <!-- Modal Form Add Kategori -->
+    <div
+      id="formModal"
+      class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold mb-4 text-primary">Obat</h2>
+        <form id="addObatForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Nama Obat</label
+            >
+            <input
+              type="text"
+              id="namaObat"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Jenis</label
+            >
+            <input
+              type="text"
+              id="jenis"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Stok</label
+            >
+            <input
+              type="text"
+              id="stok"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Harga</label
+            >
+            <input
+              type="text"
+              id="harga"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Kode Supplier</label
+            >
+            <input
+              type="text"
+              id="kodeSupplier"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+          <div class="flex justify-end space-x-2 pt-4">
+            <button
+              type="button"
+              id="cancelBtn"
+              class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-hover transition"
+            >
+              Simpan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script>
-      // Script untuk fake data
-      const dataKategori = [
-        { kode: "K001", nama: "Obat Umum" },
-        { kode: "K002", nama: "Vitamin" },
-        { kode: "K003", nama: "Antibiotik" },
+      const dataObat = [
+        {
+          nama: "Paracetamol",
+          tipe: "Merah",
+          kategori: "K001",
+          stok: 100,
+          harga: 5000,
+          supplier: "S001",
+        },
+        {
+          nama: "Amoxicilin",
+          tipe: "Hijau",
+          kategori: "K002",
+          stok: 200,
+          harga: 15000,
+          supplier: "S002",
+        },
+        {
+          nama: "Cefixime",
+          tipe: "Merah",
+          kategori: "K003",
+          stok: 50,
+          harga: 25000,
+          supplier: "S003",
+        },
+        {
+          nama: "Obat Batuk",
+          tipe: "Biru",
+          kategori: "K004",
+          stok: 75,
+          harga: 10000,
+          supplier: "S004",
+        },
+        {
+          nama: "Obat Luka",
+          tipe: "Biru",
+          kategori: "K005",
+          stok: 30,
+          harga: 20000,
+          supplier: "S005",
+        },
       ];
 
       const tbody = document.getElementById("tableBody");
 
-      dataKategori.forEach((item, index) => {
+      dataObat.forEach((item, index) => {
         tbody.innerHTML += `
-        <tr>
-          <td class="px-4 py-2">${index + 1}</td>
-          <td class="px-4 py-2">${item.kode}</td>
-          <td class="px-4 py-2">${item.nama}</td>
-          <td class="flex items-center justify-center px-4 py-2 space-x-2">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded"><i class="fas fa-edit"></i></button>
-            <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"><i class="fas fa-trash"></i></button>
-          </td>
-        </tr>`;
+      <tr>
+        <td class="px-4 py-2">${index + 1}</td>
+        <td class="px-4 py-2">${item.nama}</td>
+        <td class="px-4 py-2">${item.tipe}</td>
+        <td class="px-4 py-2">${item.stok}</td>
+        <td class="px-4 py-2">Rp ${item.harga.toLocaleString()}</td>
+        <td class="px-4 py-2">${item.kategori}</td>
+        <td class="px-4 py-2">${item.supplier}</td>
+        <td class="px-4 py-2">
+          <div class="flex justify-center space-x-2">
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
       });
 
       // Script untuk toggle menu dashboard mobile

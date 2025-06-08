@@ -85,9 +85,8 @@
 
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Data</div>
-
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
               href="data_kategori.html"
               class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
@@ -104,7 +103,7 @@
             </a>
             <a
               href="data_supplier.html"
-              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
             >
               <i class="fas fa-user-tie"></i>
               <span class="font-jakarta">Data Supplier</span>
@@ -116,28 +115,35 @@
       <div class="w-full border-t-2 border-secondary pt-4">
         <div class="mb-2">Master Transaksi</div>
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
               href="data_pembelian.html"
-              class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
+              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
-              <i class="fas fa-receipt"></i>
+              <i class="fas fa-arrow-circle-up"></i>
               <span class="font-jakarta">Data Pembelian</span>
+            </a>
+            <a
+              href="data_pengeluaran.html"
+              class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+            >
+              <i class="fas fa-arrow-circle-down"></i>
+              <span class="font-jakarta">Data Pengeluaran</span>
             </a>
           </div>
         </nav>
       </div>
 
       <div class="w-full border-t-2 border-secondary pt-4">
-        <div class="mb-2">Master Laporan</div>
+        <div class="mb-2">Master Pegawai</div>
         <nav class="w-full">
-          <div class="space-y-2 w-full">
+          <div class="w-full">
             <a
-              href="data_laporan.html"
+              href="data_pegawai.html"
               class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
             >
               <i class="fas fa-receipt"></i>
-              <span class="font-jakarta">Data Laporan</span>
+              <span class="font-jakarta">Data Pegawai</span>
             </a>
           </div>
         </nav>
@@ -199,7 +205,7 @@
               </a>
               <a
                 href="data_supplier.html"
-                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+                class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
               >
                 <i class="fas fa-user-tie"></i>
                 <span class="font-jakarta">Data Supplier</span>
@@ -214,25 +220,32 @@
             <div class="w-full">
               <a
                 href="data_pembelian.html"
-                class="flex items-center space-x-2 p-2 bg-secondary text-primary transition rounded-md w-full"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
               >
-                <i class="fas fa-receipt"></i>
+                <i class="fas fa-arrow-circle-up"></i>
                 <span class="font-jakarta">Data Pembelian</span>
+              </a>
+              <a
+                href="data_pengeluaran.html"
+                class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
+              >
+                <i class="fas fa-arrow-circle-down"></i>
+                <span class="font-jakarta">Data Pengeluaran</span>
               </a>
             </div>
           </nav>
         </div>
 
         <div class="w-full border-t-2 border-secondary pt-4 mt-4">
-          <div class="mb-2">Master Laporan</div>
+          <div class="mb-2">Master Pegawai</div>
           <nav class="w-full">
             <div class="w-full">
               <a
-                href="data_laporan.html"
+                href="data_pegawai.html"
                 class="flex items-center space-x-2 p-2 hover:bg-primary-hover transition rounded-md w-full"
               >
                 <i class="fas fa-receipt"></i>
-                <span class="font-jakarta">Data Laporan</span>
+                <span class="font-jakarta">Data Pegawai</span>
               </a>
             </div>
           </nav>
@@ -251,8 +264,83 @@
     </div>
 
     <!-- Main content -->
+    <div class="ml-0 md:ml-60 mt-[60px] p-5">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-row space-x-2 items-center">
+          <i class="fas fa-user-tie text-2xl"></i>
+          <p class="text-xl font-bold">Data Supplier</p>
+        </div>
+        <div
+          class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
+        >
+          <p class="font-semibold">Add</p>
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center mb-4">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari..."
+          class="w-full md:w-1/3 p-2 border border-gray-300 rounded-full focus:outline-none"
+        />
+      </div>
+
+      <div class="overflow-x-auto rounded-lg mt-5 shadow-lg">
+        <table
+          class="min-w-full text-sm border-0 border-gray-300 bg-white"
+          id="kategoriTable"
+        >
+          <thead class="bg-primary text-white">
+            <tr>
+              <th class="px-4 py-2 text-center">No</th>
+              <th class="px-4 py-2 text-center">Kode Supplier</th>
+              <th class="px-4 py-2 text-center">Nama Supplier</th>
+              <th class="px-4 py-2 text-center">Alamat Supplier</th>
+              <th class="px-4 py-2 text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody
+            id="tableBody"
+            class="text-gray-800 text-center divide-y divide-gray"
+          ></tbody>
+        </table>
+      </div>
+    </div>
 
     <script>
+      const dataSupplier = [
+        { kode: "S001", nama: "PT Kimia Farma", alamat: "Jakarta" },
+        { kode: "S002", nama: "Apotek Sehat", alamat: "Surabaya" },
+        { kode: "S003", nama: "PT Indofarma", alamat: "Bandung" },
+        { kode: "S004", nama: "Apotek Mandiri", alamat: "Yogyakarta" },
+        { kode: "S005", nama: "CV Obat Herbal", alamat: "Denpasar" },
+      ];
+
+      const tbody = document.getElementById("tableBody");
+
+      dataSupplier.forEach((item, index) => {
+        tbody.innerHTML += `
+      <tr>
+        <td class="px-4 py-2">${index + 1}</td>
+        <td class="px-4 py-2">${item.kode}</td>
+        <td class="px-4 py-2">${item.nama}</td>
+        <td class="px-4 py-2">${item.alamat}</td>
+        <td class="px-4 py-2">
+          <div class="flex justify-center space-x-2">
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-1 rounded">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+      });
+
       document.addEventListener("DOMContentLoaded", function () {
         const menuDashboard = document.getElementById("menuDashboard");
         const mobileDashboard = document.getElementById("mobileDashboard");
