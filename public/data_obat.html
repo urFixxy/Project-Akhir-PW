@@ -276,7 +276,8 @@
     </div>
     <div
      class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
-    id="addObatBtn">
+     id="addObatBtn"
+    >
      <p class="font-semibold">Add</p>
      <i class="fas fa-plus"></i>
     </div>
@@ -294,7 +295,7 @@
    <div class="overflow-x-auto rounded-lg mt-2 shadow-lg">
     <table
      class="min-w-full text-sm border-0 border-gray-300 bg-white"
-     id="kategoriTable"
+     id="obatTable"
     >
      <thead class="bg-primary text-white">
       <tr>
@@ -325,19 +326,19 @@
     <h2 class="text-xl font-bold mb-4 text-primary">Obat</h2>
     <form id="addObatForm" class="space-y-4">
      <div>
-      <label class="block text-sm font-medium text-gray-700">Nama Obat</label>
+      <label class="block text-sm font-medium text-gray-700">Kode Obat</label>
       <input
        type="text"
-       id="namaObat"
+       id="kodeObat"
        class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
        required
       />
      </div>
      <div>
-      <label class="block text-sm font-medium text-gray-700">Jenis</label>
+      <label class="block text-sm font-medium text-gray-700">Nama Obat</label>
       <input
        type="text"
-       id="jenisObat"
+       id="namaObat"
        class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
        required
       />
@@ -361,7 +362,9 @@
       />
      </div>
      <div>
-      <label class="block text-sm font-medium text-gray-700">Kode Kategori</label>
+      <label class="block text-sm font-medium text-gray-700"
+       >Kode Kategori</label
+      >
       <input
        type="text"
        id="kodeKategori"
@@ -400,6 +403,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdObat = null;
+
    const tableBody = document.getElementById("tableBody");
    const addObatBtn = document.getElementById("addObatBtn");
    const formModal = document.getElementById("formModal");
@@ -425,12 +431,12 @@
      const tr = document.createElement("tr");
      tr.innerHTML = `
         <td class="px-4 py-2">${index + 1}</td>
-        <td class="px-4 py-2">${item.kodeObat}</td>
-        <td class="px-4 py-2">${item.namaObat}</td>
-        <td class="px-4 py-2">${item.stokObat}</td>
-        <td class="px-4 py-2">${item.hargaObat}</td>
-        <td class="px-4 py-2">${item.kodeKategori}</td>
-        <td class="px-4 py-2">${item.kodeSupplier}</td>
+        <td class="px-4 py-2">${item.kode_obat}</td>
+        <td class="px-4 py-2">${item.nama_obat}</td>
+        <td class="px-4 py-2">${item.stok_obat}</td>
+        <td class="px-4 py-2">${item.harga_obat}</td>
+        <td class="px-4 py-2">${item.kode_kategori}</td>
+        <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updateObat('${
            item.id_obat
@@ -469,20 +475,31 @@
      let res;
      if (isEditMode) {
       // Jika sedang edit, gunakan PUT
-      res = await fetch(
-       `http://localhost:3000/api/obat/${editIdObat}`,
-       {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ namaObat, jenisObat, stokObat, hargaObat, kodeKategori, kodeSupplier }),
-       }
-      );
+      res = await fetch(`http://localhost:3000/api/obat/${editIdObat}`, {
+       method: "PUT",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({
+        kodeObat,
+        namaObat,
+        stokObat,
+        hargaObat,
+        kodeKategori,
+        kodeSupplier,
+       }),
+      });
      } else {
       // Jika tambah baru, gunakan POST
       res = await fetch("http://localhost:3000/api/obat", {
        method: "POST",
        headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ namaObat, jenisObat, stokObat, hargaObat, kodeKategori, kodeSupplier }),
+       body: JSON.stringify({
+        kodeObat,
+        namaObat,
+        stokObat,
+        hargaObat,
+        kodeKategori,
+        kodeSupplier,
+       }),
       });
      }
 
@@ -516,9 +533,7 @@
 
    // Fitur delete
    async function deleteObat(id) {
-    const konfirmasi = confirm(
-     "Apakah kamu yakin ingin menghapus obat ini?"
-    );
+    const konfirmasi = confirm("Apakah kamu yakin ingin menghapus obat ini?");
     if (!konfirmasi) return;
 
     try {
@@ -571,55 +586,6 @@
      console.error(error);
     }
    }
-
-   addObatForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const kodeObat = document.getElementById("kodeObat").value.trim();
-    const namaObat = document.getElementById("namaObat").value.trim();
-    const jenisObat = document.getElementById("jenisObat").value.trim();
-    const stokObat = document.getElementById("stokObat").value.trim();
-    const hargaObat = document.getElementById("hargaObat").value.trim();
-    const kodeKategori = document.getElementById("kodeKategori").value.trim();
-    const kodeSupplier = document.getElementById("kodeSupplier").value.trim();
-
-    try {
-     let url = "http://localhost:3000/api/obat";
-     let method = "POST";
-     if (isEditMode) {
-      // update mode
-      url += `/${editIdObat}`;
-      method = "PUT"; // asumsi API update menggunakan PUT
-     }
-
-     const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kodeObat, namaObat, jenisObat, stokObat, hargaObat, kodeKategori, kodeSupplier }),
-     });
-
-     const data = await res.json();
-
-     if (!res.ok) {
-      alert(
-       data.message ||
-        (isEditMode ? "Gagal mengupdate obat" : "Gagal menambah obat")
-      );
-      return;
-     }
-
-     alert(data.message);
-     addObatForm.reset();
-     formModal.classList.add("hidden");
-     isEditMode = false;
-     editIdObat = null;
-     loadObat(); // reload tabel
-    } catch (error) {
-     alert(
-      isEditMode ? "Error mengupdate obat" : "Error menambah obat"
-     );
-     console.error(error);
-    }
-   });
 
    // Script untuk toggle menu dashboard mobile
    document.addEventListener("DOMContentLoaded", function () {

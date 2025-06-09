@@ -6,7 +6,14 @@ CREATE TABLE kategori (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO kategori (kode_kategori, nama_kategori) VALUES
-('KTG0011', 'Antibiotik'),
-('KTG0012', 'Vitamin'),
-('KTG0013', 'Analgesik');
+CREATE TABLE obat (
+  id_obat SERIAL PRIMARY KEY,
+  kode_obat VARCHAR(50) NOT NULL,
+  nama_obat VARCHAR(100) NOT NULL,
+  stok_obat INTEGER DEFAULT 0,
+  harga_obat NUMERIC(12, 2),
+  kode_kategori VARCHAR(50),
+  kode_supplier VARCHAR(50)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -366,6 +366,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdKategori = null;
+
    const tableBody = document.getElementById("tableBody");
    const addKategoriBtn = document.getElementById("addKategoriBtn");
    const formModal = document.getElementById("formModal");
@@ -432,7 +435,10 @@
        {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kodeKategori, namaKategori }),
+        body: JSON.stringify({
+         kodeKategori,
+         namaKategori,
+        }),
        }
       );
      } else {
@@ -440,7 +446,10 @@
       res = await fetch("http://localhost:3000/api/kategori", {
        method: "POST",
        headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ kodeKategori, namaKategori }),
+       body: JSON.stringify({
+        kodeKategori,
+        namaKategori,
+       }),
       });
      }
 
@@ -525,50 +534,6 @@
      console.error(error);
     }
    }
-
-   addKategoriForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const kodeKategori = document.getElementById("kodeKategori").value.trim();
-    const namaKategori = document.getElementById("namaKategori").value.trim();
-
-    try {
-     let url = "http://localhost:3000/api/kategori";
-     let method = "POST";
-     if (isEditMode) {
-      // update mode
-      url += `/${editIdKategori}`;
-      method = "PUT"; // asumsi API update menggunakan PUT
-     }
-
-     const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kodeKategori, namaKategori }),
-     });
-
-     const data = await res.json();
-
-     if (!res.ok) {
-      alert(
-       data.message ||
-        (isEditMode ? "Gagal mengupdate kategori" : "Gagal menambah kategori")
-      );
-      return;
-     }
-
-     alert(data.message);
-     addKategoriForm.reset();
-     formModal.classList.add("hidden");
-     isEditMode = false;
-     editIdKategori = null;
-     loadKategori(); // reload tabel
-    } catch (error) {
-     alert(
-      isEditMode ? "Error mengupdate kategori" : "Error menambah kategori"
-     );
-     console.error(error);
-    }
-   });
 
    // Script untuk toggle menu dashboard mobile
    document.addEventListener("DOMContentLoaded", function () {

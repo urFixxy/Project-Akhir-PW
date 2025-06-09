@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const kategoriRoutes = require('./routes/kategori');
+const obatRoutes = require('./routes/obat');
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/kategori', kategoriRoutes);
+
+app.use('/api/obat', obatRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);

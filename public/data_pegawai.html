@@ -275,7 +275,8 @@
     </div>
     <div
      class="flex items-center space-x-2 bg-primary text-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary-hover transition duration-300"
-    id="addPegawaiBtn">
+     id="addPegawaiBtn"
+    >
      <p class="font-semibold">Add</p>
      <i class="fas fa-plus"></i>
     </div>
@@ -381,6 +382,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdObat = null;
+
    const tableBody = document.getElementById("tableBody");
    const addPegawaiBtn = document.getElementById("addPegawaiBtn");
    const formModal = document.getElementById("formModal");
@@ -399,7 +403,7 @@
     }
    }
 
-   // Render tabel pegawai  
+   // Render tabel pegawai
    function renderTable(data) {
     tableBody.innerHTML = "";
     data.forEach((item, index) => {
@@ -446,20 +450,27 @@
      let res;
      if (isEditMode) {
       // Jika sedang edit, gunakan PUT
-      res = await fetch(
-       `http://localhost:3000/api/pegawai/${editIdPegawai}`,
-       {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kodePegawai, namaPegawai, jabatanPegawai, alamatPegawai }),
-       }
-      );
+      res = await fetch(`http://localhost:3000/api/pegawai/${editIdPegawai}`, {
+       method: "PUT",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({
+        kodePegawai,
+        namaPegawai,
+        jabatanPegawai,
+        alamatPegawai,
+       }),
+      });
      } else {
       // Jika tambah baru, gunakan POST
       res = await fetch("http://localhost:3000/api/pegawai", {
        method: "POST",
        headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ kodePegawai, namaPegawai, jabatanPegawai, alamatPegawai }),
+       body: JSON.stringify({
+        kodePegawai,
+        namaPegawai,
+        jabatanPegawai,
+        alamatPegawai,
+       }),
       });
      }
 
@@ -546,52 +557,6 @@
      console.error(error);
     }
    }
-
-   addPegawaiForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const kodePegawai = document.getElementById("kodePegawai").value.trim();
-    const namaPegawai = document.getElementById("namaPegawai").value.trim();
-    const jabatanPegawai = document.getElementById("jabatanPegawai").value.trim();
-    const alamatPegawai = document.getElementById("alamatPegawai").value.trim();
-
-    try {
-     let url = "http://localhost:3000/api/pegawai";
-     let method = "POST";
-     if (isEditMode) {
-      // update mode
-      url += `/${editIdPegawai}`;
-      method = "PUT"; // asumsi API update menggunakan PUT
-     }
-
-     const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kodePegawai, namaPegawai, jabatanPegawai, alamatPegawai }),
-     });
-
-     const data = await res.json();
-
-     if (!res.ok) {
-      alert(
-       data.message ||
-        (isEditMode ? "Gagal mengupdate pegawai" : "Gagal menambah pegawai")
-      );
-      return;
-     }
-
-     alert(data.message);
-     addPegawaiForm.reset();
-     formModal.classList.add("hidden");
-     isEditMode = false;
-     editIdPegawai = null;
-     loadPegawai(); // reload tabel
-    } catch (error) {
-     alert(
-      isEditMode ? "Error mengupdate pegawai" : "Error menambah pegawai"
-     );
-     console.error(error);
-    }
-   });
 
    // Script untuk toggle menu dashboard mobile
    document.addEventListener("DOMContentLoaded", function () {
