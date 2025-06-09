@@ -536,51 +536,6 @@
     }
    }
 
-   addSupplierForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const kodeSupplier = document.getElementById("kodeSupplier").value.trim();
-    const namaSupplier = document.getElementById("namaSupplier").value.trim();
-    const alamatSupplier = document.getElementById("alamatSupplier").value.trim();
-
-    try {
-     let url = "http://localhost:3000/api/supplier";
-     let method = "POST";
-     if (isEditMode) {
-      // update mode
-      url += `/${editIdSupplier}`;
-      method = "PUT"; // asumsi API update menggunakan PUT
-     }
-
-     const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kodeSupplier, namaSupplier, alamatSupplier }),
-     });
-
-     const data = await res.json();
-
-     if (!res.ok) {
-      alert(
-       data.message ||
-        (isEditMode ? "Gagal mengupdate supplier" : "Gagal menambah supplier")
-      );
-      return;
-     }
-
-     alert(data.message);
-     addSupplierForm.reset();
-     formModal.classList.add("hidden");
-     isEditMode = false;
-     editIdSupplier = null;
-     loadSupplier(); // reload tabel
-    } catch (error) {
-     alert(
-      isEditMode ? "Error mengupdate supplier" : "Error menambah supplier"
-     );
-     console.error(error);
-    }
-   });
-
    // Script untuk toggle menu dashboard mobile
    document.addEventListener("DOMContentLoaded", function () {
     const menuDashboard = document.getElementById("menuDashboard");

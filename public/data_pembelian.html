@@ -406,6 +406,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdObat = null;
+
    const tableBody = document.getElementById("tableBody");
    const addPembelianBtn = document.getElementById("addPembelianBtn");
    const formModal = document.getElementById("formModal");
@@ -431,14 +434,14 @@
      const tr = document.createElement("tr");
      tr.innerHTML = `
         <td class="px-4 py-2">${index + 1}</td>
-        <td class="px-4 py-2">${item.kodePembelian}</td>
-        <td class="px-4 py-2">${item.kodeObat}</td>
+        <td class="px-4 py-2">${item.kode_pembelian}</td>
+        <td class="px-4 py-2">${item.kode_obat}</td>
         <td class="px-4 py-2">${item.jumlah}</td>
         <td class="px-4 py-2">${item.tanggal}</td>
-        <td class="px-4 py-2">${item.kodePegawai}</td>
-        <td class="px-4 py-2">${item.kodeSupplier}</td>
-        <td class="px-4 py-2">${item.kodeKategori}</td>
-        <td class="px-4 py-2">${item.kodeSupplier}</td>
+        <td class="px-4 py-2">${item.kode_pegawai}</td>
+        <td class="px-4 py-2">${item.kode_supplier}</td>
+        <td class="px-4 py-2">${item.kode_kategori}</td>
+        <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updatePembelian('${
            item.id_pembelian
@@ -477,18 +480,21 @@
      let res;
      if (isEditMode) {
       // Jika sedang edit, gunakan PUT
-      res = await fetch(`http://localhost:3000/api/pembelian/${editIdPembelian}`, {
-       method: "PUT",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({
-        kodePembelian,
-        kodeObat,
-        jumlah,
-        tanggal,
-        kodePegawai,
-        kodeSupplier,
-       }),
-      });
+      res = await fetch(
+       `http://localhost:3000/api/pembelian/${editIdPembelian}`,
+       {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+         kodePembelian,
+         kodeObat,
+         jumlah,
+         tanggal,
+         kodePegawai,
+         kodeSupplier,
+        }),
+       }
+      );
      } else {
       // Jika tambah baru, gunakan POST
       res = await fetch("http://localhost:3000/api/pembelian", {
@@ -503,7 +509,7 @@
         kodeSupplier,
        }),
       });
-    }
+     }
 
      const data = await res.json();
      if (!res.ok) {
@@ -535,7 +541,9 @@
 
    // Fitur delete
    async function deletePembelian(id) {
-    const konfirmasi = confirm("Apakah kamu yakin ingin menghapus pembelian ini?");
+    const konfirmasi = confirm(
+     "Apakah kamu yakin ingin menghapus pembelian ini?"
+    );
     if (!konfirmasi) return;
 
     try {
@@ -588,58 +596,6 @@
      console.error(error);
     }
    }
-
-   addPembelianForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const kodePembelian = document.getElementById("kodePembelian").value.trim();
-    const kodeObat = document.getElementById("kodeObat").value.trim();
-    const jumlah = document.getElementById("jumlah").value.trim();
-    const tanggal = document.getElementById("tanggal").value.trim();
-    const kodePegawai = document.getElementById("kodePegawai").value.trim();
-    const kodeSupplier = document.getElementById("kodeSupplier").value.trim();
-
-    try {
-     let url = "http://localhost:3000/api/pembelian";
-     let method = "POST";
-     if (isEditMode) {
-      // update mode
-      url += `/${editIdPembelian}`;
-      method = "PUT"; // asumsi API update menggunakan PUT
-     }
-
-     const res = await fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-       kodeObat,
-       jumlah,
-       tanggal,
-       kodePegawai,
-       kodeSupplier,
-      }),
-     });
-
-     const data = await res.json();
-
-     if (!res.ok) {
-      alert(
-       data.message ||
-        (isEditMode ? "Gagal mengupdate pembelian" : "Gagal menambah pembelian")
-      );
-      return;
-     }
-
-     alert(data.message);
-     addPembelianForm.reset();
-     formModal.classList.add("hidden");
-     isEditMode = false;
-     editIdPembelian = null;
-     loadPembelian(); // reload tabel
-    } catch (error) {
-     alert(isEditMode ? "Error mengupdate pembelian" : "Error menambah pembelian");
-     console.error(error);
-    }
-   });
 
    // Script untuk toggle menu dashboard mobile
    document.addEventListener("DOMContentLoaded", function () {
