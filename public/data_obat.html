@@ -439,10 +439,10 @@
         <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updateObat('${
-           item.id_obat
+           item.kode_obat
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deleteObat('${
-           item.id_obat
+           item.kode_obat
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -453,12 +453,16 @@
    // Show modal tambah Obat
    addObatBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdObat = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addObatForm.reset();
+    isEditMode = false;
+    editIdObat = null;
    });
 
    // Submit form tambah kategori
@@ -513,6 +517,9 @@
      addObatForm.reset();
      formModal.classList.add("hidden");
      loadObat(); // reload tabel
+
+     isEditMode = false;
+     editIdObat = null;
     } catch (error) {
      alert("Error menambah obat");
      console.error(error);
@@ -575,11 +582,9 @@
      document.getElementById("kodeKategori").value = data.kode_kategori;
      document.getElementById("kodeSupplier").value = data.kode_supplier;
 
-     // Simpan id obat yang sedang diedit dan ubah mode
      isEditMode = true;
      editIdObat = id;
 
-     // Tampilkan modal
      formModal.classList.remove("hidden");
     } catch (error) {
      alert("Error mengambil data obat");

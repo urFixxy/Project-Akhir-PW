@@ -373,6 +373,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdSupplier = null;
+
    const tableBody = document.getElementById("tableBody");
    const addSupplierBtn = document.getElementById("addSupplierBtn");
    const formModal = document.getElementById("formModal");
@@ -400,13 +403,13 @@
         <td class="px-4 py-2">${index + 1}</td>
         <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-4 py-2">${item.nama_supplier}</td>
-        <td class="px-4 py-2">${item.alamat_supplier}</td>
+        <td class="px-4 py-2">${item.alamat}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updateSupplier('${
-           item.id_supplier
+           item.kode_supplier
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deleteSupplier('${
-           item.id_supplier
+           item.kode_supplier
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -417,12 +420,16 @@
    // Show modal tambah supplier
    addSupplierBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdSupplier = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addSupplierForm.reset();
+    isEditMode = false;
+    editIdSupplier = null;
    });
 
    // Submit form tambah supplier
@@ -430,7 +437,9 @@
     e.preventDefault();
     const kodeSupplier = document.getElementById("kodeSupplier").value.trim();
     const namaSupplier = document.getElementById("namaSupplier").value.trim();
-    const alamatSupplier = document.getElementById("alamatSupplier").value.trim();
+    const alamatSupplier = document
+     .getElementById("alamatSupplier")
+     .value.trim();
 
     try {
      let res;
@@ -522,7 +531,7 @@
      // Isi form modal dengan data yang didapat
      document.getElementById("kodeSupplier").value = data.kode_supplier;
      document.getElementById("namaSupplier").value = data.nama_supplier;
-     document.getElementById("alamatSupplier").value = data.alamat_supplier;
+     document.getElementById("alamatSupplier").value = data.alamat;
 
      // Simpan id supplier yang sedang diedit dan ubah mode
      isEditMode = true;

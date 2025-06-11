@@ -392,6 +392,9 @@
   </div>
 
   <script>
+   let isEditMode = false;
+   let editIdPengeluaran = null;
+
    const tableBody = document.getElementById("tableBody");
    const addPengeluaranBtn = document.getElementById("addPengeluaranBtn");
    const formModal = document.getElementById("formModal");
@@ -422,15 +425,12 @@
         <td class="px-4 py-2">${item.jumlah}</td>
         <td class="px-4 py-2">${item.tanggal}</td>
         <td class="px-4 py-2">${item.kode_pegawai}</td>
-        <td class="px-4 py-2">${item.kode_supplier}</td>
-        <td class="px-4 py-2">${item.kode_kategori}</td>
-        <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updatePengeluaran('${
-           item.id_pengeluaran
+           item.kode_keluar
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deletePengeluaran('${
-           item.id_pengeluaran
+           item.kode_keluar
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -441,23 +441,26 @@
    // Show modal tambah Pengeluaran
    addPengeluaranBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdPengeluaran = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addPengeluaranForm.reset();
+    isEditMode = false;
+    editIdPengeluaran = null;
    });
 
    // Submit form tambah kategori
    addPengeluaranForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const kodePengeluaran = document.getElementById("kodeKeluar").value.trim();
+    const kodeKeluar = document.getElementById("kodeKeluar").value.trim();
     const kodeObat = document.getElementById("kodeObat").value.trim();
     const jumlah = document.getElementById("jumlah").value.trim();
     const tanggal = document.getElementById("tanggal").value.trim();
     const kodePegawai = document.getElementById("kodePegawai").value.trim();
-    const kodeSupplier = document.getElementById("kodeSupplier").value.trim();
 
     try {
      let res;
@@ -474,7 +477,6 @@
          jumlah,
          tanggal,
          kodePegawai,
-         kodeSupplier,
         }),
        }
       );
@@ -489,7 +491,6 @@
         jumlah,
         tanggal,
         kodePegawai,
-        kodeSupplier,
        }),
       });
      }
@@ -517,7 +518,7 @@
      const query = this.value.toLowerCase();
      const rows = document.querySelectorAll("#pengeluaranTable tbody tr");
      rows.forEach((row) => {
-      const nama = row.children[2].textContent.toLowerCase(); // index ke-2 adalah 'Nama Obat'
+      const nama = row.children[2].textContent.toLowerCase();
       row.style.display = nama.includes(query) ? "" : "none";
      });
     });
@@ -561,16 +562,15 @@
       return;
      }
      // Isi form modal dengan data yang didapat
-     document.getElementById("kodeKeluar").value = data.kode_pengeluaran;
+     document.getElementById("kodeKeluar").value = data.kode_keluar;
      document.getElementById("kodeObat").value = data.kode_obat;
      document.getElementById("jumlah").value = data.jumlah;
      document.getElementById("tanggal").value = data.tanggal;
      document.getElementById("kodePegawai").value = data.kode_pegawai;
-     document.getElementById("kodeSupplier").value = data.kode_supplier;
 
      // Simpan id obat yang sedang diedit dan ubah mode
      isEditMode = true;
-     editIdObat = id;
+     editIdPengeluaran = id;
 
      // Tampilkan modal
      formModal.classList.remove("hidden");

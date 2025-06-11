@@ -383,7 +383,7 @@
 
   <script>
    let isEditMode = false;
-   let editIdObat = null;
+   let editIdPegawai = null;
 
    const tableBody = document.getElementById("tableBody");
    const addPegawaiBtn = document.getElementById("addPegawaiBtn");
@@ -412,14 +412,14 @@
         <td class="px-4 py-2">${index + 1}</td>
         <td class="px-4 py-2">${item.kode_pegawai}</td>
         <td class="px-4 py-2">${item.nama_pegawai}</td>
-        <td class="px-4 py-2">${item.jabatan_pegawai}</td>
-        <td class="px-4 py-2">${item.alamat_pegawai}</td>
+        <td class="px-4 py-2">${item.jabatan}</td>
+        <td class="px-4 py-2">${item.alamat}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updatePegawai('${
-           item.id_pegawai
+           item.kode_pegawai
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deletePegawai('${
-           item.id_pegawai
+           item.kode_pegawai
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -430,12 +430,16 @@
    // Show modal tambah pegawai
    addPegawaiBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdPegawai = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addPegawaiForm.reset();
+    isEditMode = false;
+    editIdPegawai = null;
    });
 
    // Submit form tambah pegawai
@@ -443,8 +447,8 @@
     e.preventDefault();
     const kodePegawai = document.getElementById("kodePegawai").value.trim();
     const namaPegawai = document.getElementById("namaPegawai").value.trim();
-    const jabatanPegawai = document.getElementById("jabatanPegawai").value.trim();
-    const alamatPegawai = document.getElementById("alamatPegawai").value.trim();
+    const jabatan = document.getElementById("jabatanPegawai").value.trim();
+    const alamat = document.getElementById("alamatPegawai").value.trim();
 
     try {
      let res;
@@ -456,8 +460,8 @@
        body: JSON.stringify({
         kodePegawai,
         namaPegawai,
-        jabatanPegawai,
-        alamatPegawai,
+        jabatan,
+        alamat,
        }),
       });
      } else {
@@ -468,8 +472,8 @@
        body: JSON.stringify({
         kodePegawai,
         namaPegawai,
-        jabatanPegawai,
-        alamatPegawai,
+        jabatan,
+        alamat,
        }),
       });
      }
@@ -543,8 +547,8 @@
      // Isi form modal dengan data yang didapat
      document.getElementById("kodePegawai").value = data.kode_pegawai;
      document.getElementById("namaPegawai").value = data.nama_pegawai;
-     document.getElementById("jabatanPegawai").value = data.jabatan_pegawai;
-     document.getElementById("alamatPegawai").value = data.alamat_pegawai;
+     document.getElementById("jabatanPegawai").value = data.jabatan;
+     document.getElementById("alamatPegawai").value = data.alamat;
 
      // Simpan id pegawai yang sedang diedit dan ubah mode
      isEditMode = true;

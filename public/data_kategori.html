@@ -398,10 +398,10 @@
         <td class="px-4 py-2">${item.nama_kategori}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updateKategori('${
-           item.id_kategori
+           item.kode_kategori
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deleteKategori('${
-           item.id_kategori
+           item.kode_kategori
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -412,12 +412,16 @@
    // Show modal tambah kategori
    addKategoriBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdKategori = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addKategoriForm.reset();
+    isEditMode = false;
+    editIdKategori = null;
    });
 
    // Submit form tambah kategori

@@ -303,6 +303,7 @@
        <th class="px-4 py-2 text-center">No</th>
        <th class="px-4 py-2 text-center">Kode Pembelian</th>
        <th class="px-4 py-2 text-center">Kode Obat</th>
+       <th class="px-4 py-2 text-center">Kode Kategori</th>
        <th class="px-4 py-2 text-center">Jumlah</th>
        <th class="px-4 py-2 text-center">Tanggal</th>
        <th class="px-4 py-2 text-center">Kode Pegawai</th>
@@ -342,6 +343,17 @@
       <input
        type="text"
        id="kodeObat"
+       class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+       required
+      />
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700"
+       >Kode Kategori</label
+      >
+      <input
+       type="text"
+       id="kodeKategori"
        class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
        required
       />
@@ -407,7 +419,7 @@
 
   <script>
    let isEditMode = false;
-   let editIdObat = null;
+   let editIdPembelian = null;
 
    const tableBody = document.getElementById("tableBody");
    const addPembelianBtn = document.getElementById("addPembelianBtn");
@@ -435,19 +447,18 @@
      tr.innerHTML = `
         <td class="px-4 py-2">${index + 1}</td>
         <td class="px-4 py-2">${item.kode_pembelian}</td>
+        <td class="px-4 py-2">${item.kode_kategori}</td>
         <td class="px-4 py-2">${item.kode_obat}</td>
         <td class="px-4 py-2">${item.jumlah}</td>
         <td class="px-4 py-2">${item.tanggal}</td>
         <td class="px-4 py-2">${item.kode_pegawai}</td>
         <td class="px-4 py-2">${item.kode_supplier}</td>
-        <td class="px-4 py-2">${item.kode_kategori}</td>
-        <td class="px-4 py-2">${item.kode_supplier}</td>
         <td class="px-1 py-2 flex justify-center space-x-2">
           <button class="text-yellow-400 hover:text-yellow-700 text-xl" onclick="updatePembelian('${
-           item.id_pembelian
+           item.kode_pembelian
           }')"><i class="fas fa-edit"></i></button>
           <button class="text-red-400 hover:text-red-700 text-xl" onclick="deletePembelian('${
-           item.id_pembelian
+           item.kode_pembelian
           }')"><i class="fas fa-trash"></i></button>
         </td>
       `;
@@ -458,12 +469,16 @@
    // Show modal tambah Pembelian
    addPembelianBtn.addEventListener("click", () => {
     formModal.classList.remove("hidden");
+    isEditMode = false;
+    editIdPembelian = null;
    });
 
    // Cancel modal
    cancelBtn.addEventListener("click", () => {
     formModal.classList.add("hidden");
     addPembelianForm.reset();
+    isEditMode = false;
+    editIdPembelian = null;
    });
 
    // Submit form tambah kategori
@@ -471,6 +486,7 @@
     e.preventDefault();
     const kodePembelian = document.getElementById("kodePembelian").value.trim();
     const kodeObat = document.getElementById("kodeObat").value.trim();
+    const kodeKategori = document.getElementById("kodeKategori").value.trim();
     const jumlah = document.getElementById("jumlah").value.trim();
     const tanggal = document.getElementById("tanggal").value.trim();
     const kodePegawai = document.getElementById("kodePegawai").value.trim();
@@ -488,6 +504,7 @@
         body: JSON.stringify({
          kodePembelian,
          kodeObat,
+         kodeKategori,
          jumlah,
          tanggal,
          kodePegawai,
@@ -503,6 +520,7 @@
        body: JSON.stringify({
         kodePembelian,
         kodeObat,
+        kodeKategori,
         jumlah,
         tanggal,
         kodePegawai,
@@ -534,7 +552,7 @@
      const query = this.value.toLowerCase();
      const rows = document.querySelectorAll("#pembelianTable tbody tr");
      rows.forEach((row) => {
-      const nama = row.children[2].textContent.toLowerCase(); // index ke-2 adalah 'Nama Obat'
+      const nama = row.children[2].textContent.toLowerCase();
       row.style.display = nama.includes(query) ? "" : "none";
      });
     });
@@ -580,6 +598,7 @@
      // Isi form modal dengan data yang didapat
      document.getElementById("kodePembelian").value = data.kode_pembelian;
      document.getElementById("kodeObat").value = data.kode_obat;
+     document.getElementById("kodeKategori").value = data.kode_kategori;
      document.getElementById("jumlah").value = data.jumlah;
      document.getElementById("tanggal").value = data.tanggal;
      document.getElementById("kodePegawai").value = data.kode_pegawai;
@@ -587,7 +606,7 @@
 
      // Simpan id obat yang sedang diedit dan ubah mode
      isEditMode = true;
-     editIdObat = id;
+     editIdPembelian = id;
 
      // Tampilkan modal
      formModal.classList.remove("hidden");

@@ -6,7 +6,7 @@ const db = require("../db");
 router.get("/", async (req, res) => {
  try {
   const result = await db.query(
-   "SELECT * FROM kategori ORDER BY id_kategori ASC"
+   "SELECT * FROM kategori ORDER BY kode_kategori"
   );
   res.json(result.rows);
  } catch (err) {
@@ -28,57 +28,14 @@ router.post("/", async (req, res) => {
  }
 });
 
-// Delete kategori
-router.delete("/:id", async (req, res) => {
- const { id } = req.params;
-
- try {
-  const deleteResult = await db.query(
-   "DELETE FROM kategori WHERE id_kategori = $1 RETURNING *",
-   [id]
-  );
-
-  if (deleteResult.rowCount === 0) {
-   return res.status(404).json({ message: "Kategori tidak ditemukan" });
-  }
-
-  res.json({ message: "Kategori berhasil dihapus" });
- } catch (err) {
-  console.error("Gagal delete kategori:", err);
-  res.status(500).json({ message: "Terjadi kesalahan server" });
- }
-});
-
 // Update kategori
-router.get("/:id", async (req, res) => {
- const { id } = req.params;
-
- try {
-  const result = await db.query(
-   "SELECT * FROM kategori WHERE id_kategori = $1",
-   [id]
-  );
-
-  if (result.rowCount === 0) {
-   return res.status(404).json({ message: "Kategori tidak ditemukan" });
-  }
-
-  res.json(result.rows[0]);
- } catch (err) {
-  console.error("Gagal mengambil kategori berdasarkan ID:", err);
-  res
-   .status(500)
-   .json({ message: "Terjadi kesalahan saat mengambil data kategori" });
- }
-});
-
 router.put("/:id", async (req, res) => {
  const { id } = req.params;
  const { kodeKategori, namaKategori } = req.body;
 
  try {
   const updateResult = await db.query(
-   "UPDATE kategori SET kode_kategori = $1, nama_kategori = $2 WHERE id_kategori = $3 RETURNING *",
+   "UPDATE kategori SET kode_kategori = $1, nama_kategori = $2 WHERE kode_kategori = $3 RETURNING *",
    [kodeKategori, namaKategori, id]
   );
 
@@ -95,6 +52,49 @@ router.put("/:id", async (req, res) => {
   res
    .status(500)
    .json({ error: "Terjadi kesalahan server saat update kategori" });
+ }
+});
+
+router.get("/:id", async (req, res) => {
+ const { id } = req.params;
+
+ try {
+  const result = await db.query(
+   "SELECT * FROM kategori WHERE kode_kategori = $1",
+   [id]
+  );
+
+  if (result.rowCount === 0) {
+   return res.status(404).json({ message: "Kategori tidak ditemukan" });
+  }
+
+  res.json(result.rows[0]);
+ } catch (err) {
+  console.error("Gagal mengambil kategori berdasarkan kode:", err);
+  res
+   .status(500)
+   .json({ message: "Terjadi kesalahan saat mengambil data kategori" });
+ }
+});
+
+// Delete kategori
+router.delete("/:id", async (req, res) => {
+ const { id } = req.params;
+
+ try {
+  const deleteResult = await db.query(
+   "DELETE FROM kategori WHERE kode_kategori = $1 RETURNING *",
+   [id]
+  );
+
+  if (deleteResult.rowCount === 0) {
+   return res.status(404).json({ message: "Kategori tidak ditemukan" });
+  }
+
+  res.json({ message: "Kategori berhasil dihapus" });
+ } catch (err) {
+  console.error("Gagal delete kategori:", err);
+  res.status(500).json({ message: "Terjadi kesalahan server" });
  }
 });
 
