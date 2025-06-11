@@ -19,7 +19,6 @@ router.post("/", async (req, res) => {
  const {
   kodePembelian,
   kodeObat,
-  kodeKategori,
   jumlah,
   tanggal,
   kodePegawai,
@@ -32,12 +31,11 @@ router.post("/", async (req, res) => {
 
  try {
   const result = await db.query(
-   `INSERT INTO pembelian (kode_pembelian, kode_obat, kode_kategori, jumlah, tanggal, kode_pegawai, kode_supplier) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING kode_pembelian`,
+   `INSERT INTO pembelian (kode_pembelian, kode_obat, jumlah, tanggal, kode_pegawai, kode_supplier) 
+       VALUES ($1, $2, $3, $4, $5, $6) RETURNING kode_pembelian`,
    [
     kodePembelian,
     kodeObat,
-    kodeKategori,
     jumlah,
     tanggal,
     kodePegawai,
@@ -61,7 +59,6 @@ router.put("/:id", async (req, res) => {
  const {
   kodePembelian,
   kodeObat,
-  kodeKategori,
   jumlah,
   tanggal,
   kodePegawai,
@@ -77,16 +74,14 @@ router.put("/:id", async (req, res) => {
    `UPDATE pembelian SET 
                 kode_pembelian = $1,
                 kode_obat = $2,
-                kode_kategori = $3,
-                jumlah = $4,
-                tanggal = $5,
-                kode_pegawai = $6,
-                kode_supplier = $7
-             WHERE kode_pembelian = $8`,
+                jumlah = $3,
+                tanggal = $4,
+                kode_pegawai = $5,
+                kode_supplier = $6
+             WHERE kode_pembelian = $7`,
    [
     kodePembelian,
     kodeObat,
-    kodeKategori,
     jumlah,
     tanggal,
     kodePegawai,

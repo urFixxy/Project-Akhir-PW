@@ -152,13 +152,13 @@
    </div>
 
    <nav class="w-full">
-    <a
-     href="signin.html"
-     class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
+    <button
+     id="signoutBtn"
+     class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full text-white"
     >
-     <i class="fas fa-sign-out-alt text-secondary"></i>
-     <span class="font-jakarta text-secondary">Sign Out</span>
-    </a>
+     <i class="fas fa-sign-out-alt"></i>
+     <span class="font-jakarta">Sign Out</span>
+    </button>
    </nav>
   </div>
 
@@ -256,13 +256,13 @@
     </div>
 
     <nav class="w-full pt-4">
-     <a
-      href="signin.html"
-      class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full"
+     <button
+      id="signoutBtn"
+      class="flex items-center mt-4 space-x-2 p-2 bg-primary hover:bg-primary-hover transition rounded-md w-full text-white"
      >
-      <i class="fas fa-sign-out-alt text-secondary"></i>
-      <span class="font-jakarta text-secondary">Sign Out</span>
-     </a>
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="font-jakarta">Sign Out</span>
+     </button>
     </nav>
    </main>
   </div>
@@ -619,6 +619,23 @@
      mobileDashboard.addEventListener("click", function (event) {
       event.stopPropagation();
      });
+    }
+   });
+
+   // Signout
+   document.getElementById("signoutBtn").addEventListener("click", async () => {
+    try {
+     const res = await fetch("http://localhost:3000/api/signout", {
+      method: "GET",
+      credentials: "include",
+     });
+
+     const data = await res.json();
+     alert(data.message);
+     window.location.href = "signin.html";
+    } catch (err) {
+     alert("Gagal signout");
+     console.error(err);
     }
    });
   </script>

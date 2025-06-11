@@ -1,124 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/Logo.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#6dc1ec",
-              "primary-hover": "#4aaedb",
-              secondary: "#ffffff",
-              third: "#000000",
-              priback: "#C6E9FC",
-              stroke: "#6dc1ec",
-            },
-            fontFamily: {
-              jakarta: ["Plus Jakarta Sans", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      input::-ms-reveal,
-      input::-ms-clear,
-      input::-webkit-credentials-auto-fill-button,
-      input::-webkit-password-reveal-button {
-        display: none;
-      }
-    </style>
-    <title>Sign In | Obatln</title>
-  </head>
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="img/Logo.png" />
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+   rel="stylesheet"
+  />
+  <script>
+   tailwind.config = {
+    theme: {
+     extend: {
+      colors: {
+       primary: "#6dc1ec",
+       "primary-hover": "#4aaedb",
+       secondary: "#ffffff",
+       third: "#000000",
+       priback: "#C6E9FC",
+       stroke: "#6dc1ec",
+      },
+      fontFamily: {
+       jakarta: ["Plus Jakarta Sans", "sans-serif"],
+      },
+     },
+    },
+   };
+  </script>
+  <style>
+   input::-ms-reveal,
+   input::-ms-clear,
+   input::-webkit-credentials-auto-fill-button,
+   input::-webkit-password-reveal-button {
+    display: none;
+   }
+  </style>
+  <title>Sign In | Obatln</title>
+ </head>
 
-  <body class="font-jakarta">
-    <!-- LOGIN PAGE -->
-    <div class="flex justify-between h-screen w-screen">
-      <div class="flex flex-1 items-center justify-center px-10 sm:px-20">
-        <div class="w-full max-w-md">
-          <div class="flex items-center text-xl mb-5">
-            <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign In</h1>
-            <span
-              class="text-3xl text-primary cursor-pointer hover:text-primary-hover"
-              ><a href="index.html">Obatln</a></span
-            >
-          </div>
-          <form
-            action=""
-            method="post"
-            class="flex gap-3 flex-col justify-center"
-          >
-            <label>
-              <p>Email</p>
-              <input
-                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
-                type="email"
-                placeholder="Masukkan email"
-              />
-            </label>
-            <div class="relative w-full">
-              <p>Password</p>
-              <input
-                class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
-                type="password"
-                placeholder="Masukkan password"
-                id="password"
-              />
-              <button
-                type="button"
-                class="absolute top-1/2 right-6 transform text-gray-500 togglePassword"
-                data-target="password"
-              >
-                <i class="fa fa-eye"></i>
-              </button>
-            </div>
+ <body class="font-jakarta">
+  <!-- LOGIN PAGE -->
+  <div class="flex justify-between h-screen w-screen">
+   <div class="flex flex-1 items-center justify-center px-10 sm:px-20">
+    <div class="w-full max-w-md">
+     <div class="flex items-center text-xl mb-5">
+      <h1 class="mt-10 mb-1 text-3xl font-semibold">Sign In</h1>
+      <span
+       class="text-3xl text-primary cursor-pointer hover:text-primary-hover"
+       ><a href="index.html">Obatln</a></span
+      >
+     </div>
+     <form action="" method="post" class="flex gap-3 flex-col justify-center">
+      <label>
+       <p>Email</p>
+       <input
+        class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
+        type="email"
+        name="email"
+        placeholder="Masukkan email"
+       />
+      </label>
+      <div class="relative w-full">
+       <p>Password</p>
+       <input
+        class="p-4 border border-stroke bg-priback rounded-[10px] w-full focus:outline-none focus:bg-white"
+        type="password"
+        name="password"
+        placeholder="Masukkan password"
+        id="password"
+       />
+       <button
+        type="button"
+        class="absolute top-1/2 right-6 transform text-gray-500 togglePassword"
+        data-target="password"
+       >
+        <i class="fa fa-eye"></i>
+       </button>
+      </div>
 
-            <a
-              class="my-5 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
-              href="dashboard.html"
-              >Sign In</a
-            >
-          </form>
-        </div>
-      </div>
-      <div class="image flex-1 hidden md:block z-10">
-        <img
-          src="../assets/medicine.jpg"
-          class="h-full w-full object-cover"
-          alt="Medicine Image"
-        />
-      </div>
+      <button
+       type="submit"
+       class="my-5 p-3 bg-primary text-secondary rounded-[10px] w-full text-center hover:bg-primary-hover transition duration-300"
+      >
+       Sign In
+      </button>
+     </form>
     </div>
+   </div>
+   <div class="image flex-1 hidden md:block z-10">
+    <img
+     src="../assets/medicine.jpg"
+     class="h-full w-full object-cover"
+     alt="Medicine Image"
+    />
+   </div>
+  </div>
 
-    <script>
-      document.querySelectorAll(".togglePassword").forEach((button) => {
-        button.addEventListener("click", function () {
-          const targetId = this.getAttribute("data-target");
-          const passwordInput = document.getElementById(targetId);
+  <script>
+   fetch("http://localhost:3000/api/check-session", {
+    method: "GET",
+    credentials: "include",
+   })
+    .then((res) => res.json())
+    .then((data) => {
+     if (data.login) {
+      window.location.href = "dashboard.html";
+     }
+    });
 
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            this.innerHTML = '<i class="fa fa-eye-slash"></i>';
-          } else {
-            passwordInput.type = "password";
-            this.innerHTML = '<i class="fa fa-eye"></i>';
-          }
-        });
+   document
+    .querySelector("form")
+    .addEventListener("submit", async function (e) {
+     e.preventDefault();
+     const email = document.querySelector('input[type="email"]').value;
+     const password = document.querySelector('input[type="password"]').value;
+
+     try {
+      const response = await fetch("http://localhost:3000/api/signin", {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       credentials: "include",
+       body: JSON.stringify({ email, password }),
       });
-    </script>
-  </body>
+
+      const result = await response.json();
+
+      if (response.ok) {
+       alert(result.message);
+       localStorage.setItem('admin', email)
+       window.location.href = "dashboard.html";
+      } else {
+       alert(result.message);
+      }
+     } catch (err) {
+      alert("Gagal login");
+      console.error(err);
+     }
+    });
+
+   document.querySelectorAll(".togglePassword").forEach((button) => {
+    button.addEventListener("click", function () {
+     const targetId = this.getAttribute("data-target");
+     const passwordInput = document.getElementById(targetId);
+
+     if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      this.innerHTML = '<i class="fa fa-eye-slash"></i>';
+     } else {
+      passwordInput.type = "password";
+      this.innerHTML = '<i class="fa fa-eye"></i>';
+     }
+    });
+   });
+  </script>
+ </body>
 </html>
